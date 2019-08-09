@@ -7,15 +7,26 @@
 //
 
 import Foundation
+import Alamofire
 
-protocol CitiesInteractorInterface: class {
-
-}
-
-class CitiesInteractor {
-    weak var presenter: CitiesPresenterInterface?
-}
-
-extension CitiesInteractor: CitiesInteractorInterface {
-
+class CitiesInteractor : PresenterToInteractorProtocol{
+    weak var presenter: InteractorToPresenterProtocol?
+    
+    func fetchWeather(city : String){
+        let parameters : Parameters = ["q" : city,"key" : API_KEY,"format" : "json","num_of_days" : "1"]
+        AF.request(API_WEATHER,method: .get,parameters: parameters,encoding: URLEncoding(destination: .queryString)).responseJSON { response in
+            guard let data = response.data else {
+                self.presenter?.weatherFetchFailed()
+                return
+            }
+            do {
+                let decoder = JSONDecoder()
+                let weatherModel = try decoder.decode(WeatherModel.self, from: data)
+                self.presenter?.weatherFetchedSuccess(weatherModel: weatherModel)
+            } catch let error {
+                print(error)
+                self.presenter?.weatherFetchFailed()
+            }
+        }
+    }
 }

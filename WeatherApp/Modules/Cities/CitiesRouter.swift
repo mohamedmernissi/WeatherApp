@@ -9,39 +9,32 @@
 import Foundation
 import UIKit
 
-protocol CitiesRouterInterface: class {
 
-}
+class CitiesRouter: PresenterToRouterProtocol {
 
-class CitiesRouter: NSObject {
-
-    weak var presenter: CitiesPresenterInterface?
 
     static func setupModule() -> CitiesViewController {
-        let vc = CitiesViewController()
-        let interactor = CitiesInteractor()
-        let router = CitiesRouter()
-        let presenter = CitiesPresenter(interactor: interactor, router: router, view: vc)
+        let view = CitiesRouter.mainstoryboard.instantiateViewController(withIdentifier: "CitiesViewController") as! CitiesViewController
+        let presenter: ViewToPresenterProtocol & InteractorToPresenterProtocol = CitiesPresenter()
+        let interactor: PresenterToInteractorProtocol = CitiesInteractor()
+        let router:PresenterToRouterProtocol = CitiesRouter()
 
-        vc.presenter = presenter
-        router.presenter = presenter
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
         interactor.presenter = presenter
-        return vc
+        return view
     }
     
     static var mainstoryboard: UIStoryboard{
         return UIStoryboard(name:"Main",bundle: Bundle.main)
     }
     
-    func pushToMovieScreen(navigationConroller navigationController:UINavigationController) {
+    func pushToDetailsScreen(navigationConroller navigationController:UINavigationController) {
         
-//        let movieModue = MovieRouter.createMovieModule()
-//        navigationController.pushViewController(movieModue,animated: true)
+        let weatherMdule = WeatherRouter.setupModule()
+        navigationController.pushViewController(weatherMdule,animated: true)
         
     }
 }
-
-extension CitiesRouter: CitiesRouterInterface {
-
-}
-

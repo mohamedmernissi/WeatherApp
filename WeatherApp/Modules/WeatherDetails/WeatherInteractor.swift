@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import Alamofire
 
 protocol WeatherInteractorInterface: class {
-
+    
 }
 
 class WeatherInteractor {
     weak var presenter: WeatherPresenterInterface?
+    
+
 }
 
 extension WeatherInteractor: WeatherInteractorInterface {
-
+    
 }

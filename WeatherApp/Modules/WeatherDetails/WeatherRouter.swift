@@ -18,7 +18,7 @@ class WeatherRouter: NSObject {
     weak var presenter: WeatherPresenterInterface?
 
     static func setupModule() -> WeatherViewController {
-        let vc = WeatherViewController()
+        let vc = WeatherRouter.mainstoryboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
         let interactor = WeatherInteractor()
         let router = WeatherRouter()
         let presenter = WeatherPresenter(interactor: interactor, router: router, view: vc)
@@ -28,6 +28,11 @@ class WeatherRouter: NSObject {
         interactor.presenter = presenter
         return vc
     }
+    
+    static var mainstoryboard: UIStoryboard{
+        return UIStoryboard(name:"Main",bundle: Bundle.main)
+    }
+    
 }
 
 extension WeatherRouter: WeatherRouterInterface {

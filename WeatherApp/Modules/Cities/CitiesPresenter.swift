@@ -7,24 +7,36 @@
 //
 
 import Foundation
+import UIKit
 
-protocol CitiesPresenterInterface: class {
 
-}
+class CitiesPresenter : ViewToPresenterProtocol {
 
-class CitiesPresenter {
+    
+    var view: PresenterToViewProtocol?
+    
+    var interactor: PresenterToInteractorProtocol?
+    
+    var router: PresenterToRouterProtocol?
 
-    unowned var view: CitiesViewControllerInterface
-    let router: CitiesRouterInterface?
-    let interactor: CitiesInteractorInterface?
-
-    init(interactor: CitiesInteractorInterface, router: CitiesRouterInterface, view: CitiesViewControllerInterface) {
-        self.view = view
-        self.interactor = interactor
-        self.router = router
+    
+    func startFetchingWeatherForcity(city: String) {
+        interactor?.fetchWeather(city: city)
     }
+    
+    func showDetailsController(navigationController: UINavigationController) {
+        
+    }
+
 }
 
-extension CitiesPresenter: CitiesPresenterInterface {
+extension CitiesPresenter: InteractorToPresenterProtocol {
 
+    func weatherFetchedSuccess( weatherModel: WeatherModel) {
+        view?.showCitiesWeather(weatherModel: weatherModel)
+    }
+    
+    func weatherFetchFailed() {
+        view?.showError()
+    }
 }
