@@ -9,16 +9,8 @@
 import Foundation
 import Alamofire
 
-protocol WeatherInteractorInterface: class {
-    
-}
+class WeatherInteractor : WeatherPresenterToInteractorProtocol {
+    weak var presenter: WeatherInteractorToPresenterProtocol?
 
-class WeatherInteractor {
-    weak var presenter: WeatherPresenterInterface?
-    
 
-}
-
-extension WeatherInteractor: WeatherInteractorInterface {
-    
 }

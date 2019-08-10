@@ -16,9 +16,11 @@ class CitiesViewController: UIViewController {
     // MARK: - Properties
     var presenter: ViewToPresenterProtocol?
     
-    // Array of tuples used to populate the uitableview
-    var cities = [(name : String, state : String, degrees : String)]()
-    var filteredArray = [(name : String, state : String, degrees : String)]()
+    // Array of objects used to populate the uitableview
+    var weatherModelArray = [WeatherModel]()
+    
+    // Array of filtered objects from search
+    var filteredWeatherModelArray = [WeatherModel]()
     var isFiltered = false
     
     // Array of cities used to make connection with the api
@@ -33,7 +35,6 @@ class CitiesViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "Cities"
-        
         
         self.fetchWeather()
         
@@ -62,7 +63,7 @@ class CitiesViewController: UIViewController {
     }
     
     func fetchWeather(){
-        self.cities.removeAll()
+        self.weatherModelArray.removeAll()
         for city in citiesToFetch{
             presenter?.startFetchingWeatherForcity(city: city)
         }
@@ -72,17 +73,7 @@ class CitiesViewController: UIViewController {
 
 extension CitiesViewController : PresenterToViewProtocol{
     func showCitiesWeather(weatherModel: WeatherModel) {
-        guard let cityName = weatherModel.data?.request?[0].query else{
-            return
-        }
-        guard let cityState = weatherModel.data?.current_condition?[0].weatherDesc?[0].value else{
-            return
-        }
-        guard let cityDegrees = weatherModel.data?.current_condition?[0].temp_C else{
-            return
-        }
-        let city : (name : String, state : String, degrees : String) = (cityName,cityState,cityDegrees)
-        cities.append(city)
+        weatherModelArray.append(weatherModel)
         self.mTableView.reloadData()
     }
     
@@ -98,10 +89,10 @@ extension CitiesViewController : PresenterToViewProtocol{
 extension CitiesViewController : UITableViewDataSource{
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltered{
-            return self.filteredArray.count
+            return self.filteredWeatherModelArray.count
         }
         else{
-            return self.cities.count
+            return self.weatherModelArray.count
         }
     }
     
@@ -109,15 +100,20 @@ extension CitiesViewController : UITableViewDataSource{
         let cityCell = tableView.dequeueReusableCell(withIdentifier: CITY_CELL_IDENTIFIER, for: indexPath) as! CityCell
         
         if !isFiltered{
-            cityCell.mLblCityName.text = cities[indexPath.item].name
-            cityCell.mLblState.text = cities[indexPath.item].state
-            cityCell.mLblDegrees.text = cities[indexPath.item].degrees + "°C"
+            if let cityName = weatherModelArray[indexPath.row].data?.request?[0].query,let cityState = weatherModelArray[indexPath.row].data?.current_condition?[0].weatherDesc?[0].value,let cityDegrees = weatherModelArray[indexPath.row].data?.current_condition?[0].temp_C {
+                cityCell.mLblCityName.text = cityName
+                cityCell.mLblState.text = cityState
+                cityCell.mLblDegrees.text = cityDegrees + "°C"
+            }
         }
         else{
-            cityCell.mLblCityName.text = filteredArray[indexPath.item].name
-            cityCell.mLblState.text = filteredArray[indexPath.item].state
-            cityCell.mLblDegrees.text = filteredArray[indexPath.item].degrees + "°C"
+            if let cityName = filteredWeatherModelArray[indexPath.row].data?.request?[0].query,let cityState = filteredWeatherModelArray[indexPath.row].data?.current_condition?[0].weatherDesc?[0].value,let cityDegrees = filteredWeatherModelArray[indexPath.row].data?.current_condition?[0].temp_C {
+                cityCell.mLblCityName.text = cityName
+                cityCell.mLblState.text = cityState
+                cityCell.mLblDegrees.text = cityDegrees + "°C"
+            }
         }
+
         return cityCell
     }
 }
@@ -130,29 +126,37 @@ extension CitiesViewController : UITableViewDelegate{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             citiesToFetch.remove(at: indexPath.row)
-            cities.remove(at: indexPath.row)
+            weatherModelArray.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        var weatherModel : WeatherModel
+        if !isFiltered{
+            weatherModel = self.weatherModelArray[indexPath.row]
+        }
+        else{
+            weatherModel = self.filteredWeatherModelArray[indexPath.row]
+        }
+        self.presenter?.showDetailsController(navigationController: self.navigationController!,weatherModel: weatherModel)
     }
 }
 
 extension CitiesViewController : UISearchBarDelegate{
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.filteredArray.removeAll()
+        self.filteredWeatherModelArray.removeAll()
         if(searchText.count == 0) {
             self.isFiltered = false
         }
         else {
             self.isFiltered = true
         }
-        for city in self.cities {
-            if city.name.lowercased().contains(searchText.lowercased()) {
-                self.filteredArray.append(city)
+        for city in self.weatherModelArray {
+            if (city.data?.request?[0].query!.lowercased().contains(searchText.lowercased()))! {
+                self.filteredWeatherModelArray.append(city)
             }
         }
         self.mTableView.reloadData()

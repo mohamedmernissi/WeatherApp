@@ -8,23 +8,16 @@
 
 import Foundation
 
-protocol WeatherPresenterInterface: class {
+class WeatherPresenter : WeatherInteractorToPresenterProtocol , WeatherViewToPresenterProtocol{
+
+    var view: WeatherPresenterToViewProtocol?
+    
+    var interactor: WeatherPresenterToInteractorProtocol?
+    
+    var router: WeatherPresenterToRouterProtocol?
 
 }
 
-class WeatherPresenter {
-
-    unowned var view: WeatherViewControllerInterface
-    let router: WeatherRouterInterface?
-    let interactor: WeatherInteractorInterface?
-
-    init(interactor: WeatherInteractorInterface, router: WeatherRouterInterface, view: WeatherViewControllerInterface) {
-        self.view = view
-        self.interactor = interactor
-        self.router = router
-    }
-}
-
-extension WeatherPresenter: WeatherPresenterInterface {
-
-}
+//extension WeatherPresenter : WeatherInteractorToPresenterProtocol{
+//
+//}

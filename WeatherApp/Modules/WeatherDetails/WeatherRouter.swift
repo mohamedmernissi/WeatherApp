@@ -9,33 +9,26 @@
 import Foundation
 import UIKit
 
-protocol WeatherRouterInterface: class {
 
-}
-
-class WeatherRouter: NSObject {
-
-    weak var presenter: WeatherPresenterInterface?
+class WeatherRouter: WeatherPresenterToRouterProtocol {
 
     static func setupModule() -> WeatherViewController {
-        let vc = WeatherRouter.mainstoryboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
-        let interactor = WeatherInteractor()
-        let router = WeatherRouter()
-        let presenter = WeatherPresenter(interactor: interactor, router: router, view: vc)
-
-        vc.presenter = presenter
-        router.presenter = presenter
+        let view = WeatherRouter.mainstoryboard.instantiateViewController(withIdentifier: "WeatherViewController") as! WeatherViewController
+        let presenter: WeatherInteractorToPresenterProtocol & WeatherViewToPresenterProtocol = WeatherPresenter()
+        let interactor: WeatherPresenterToInteractorProtocol = WeatherInteractor()
+        let router:WeatherPresenterToRouterProtocol = WeatherRouter()
+        
+        view.presenter = presenter
+        presenter.view = view
+        presenter.router = router
+        presenter.interactor = interactor
         interactor.presenter = presenter
-        return vc
+        return view
     }
     
     static var mainstoryboard: UIStoryboard{
         return UIStoryboard(name:"Main",bundle: Bundle.main)
     }
     
-}
-
-extension WeatherRouter: WeatherRouterInterface {
-
 }
 

@@ -24,8 +24,8 @@ class CitiesPresenter : ViewToPresenterProtocol {
         interactor?.fetchWeather(city: city)
     }
     
-    func showDetailsController(navigationController: UINavigationController) {
-        
+    func showDetailsController(navigationController: UINavigationController, weatherModel : WeatherModel) {
+        router?.pushToDetailsScreen(navigationConroller: navigationController,weatherModel: weatherModel)
     }
 
 }

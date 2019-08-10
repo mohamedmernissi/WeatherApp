@@ -31,10 +31,11 @@ class CitiesRouter: PresenterToRouterProtocol {
         return UIStoryboard(name:"Main",bundle: Bundle.main)
     }
     
-    func pushToDetailsScreen(navigationConroller navigationController:UINavigationController) {
+    func pushToDetailsScreen(navigationConroller navigationController:UINavigationController,weatherModel : WeatherModel) {
         
-        let weatherMdule = WeatherRouter.setupModule()
-        navigationController.pushViewController(weatherMdule,animated: true)
+        let weatherModule = WeatherRouter.setupModule()
+        weatherModule.weatherModel = weatherModel
+        navigationController.pushViewController(weatherModule,animated: true)
         
     }
 }
