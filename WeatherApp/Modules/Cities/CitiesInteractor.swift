@@ -20,10 +20,13 @@ class CitiesInteractor : PresenterToInteractorProtocol{
                 self.presenter?.weatherFetchFailed()
                 return
             }
-            print("data: ",data)
             do {
                 let decoder = JSONDecoder()
                 let weatherModel = try decoder.decode(WeatherModel.self, from: data)
+                guard weatherModel.data?.error == nil else{
+                    self.presenter?.weatherFetchFailed()
+                    return
+                }
                 self.presenter?.weatherFetchedSuccess(weatherModel: weatherModel)
             } catch let error {
                 print("Error_fetchWeather: ",error.localizedDescription)

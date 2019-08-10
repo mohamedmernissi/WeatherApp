@@ -50,7 +50,7 @@ class CitiesViewController: UIViewController {
         let confirmAction = UIAlertAction(title: "OK", style: .default) { [weak alertController] _ in
             guard let alertController = alertController, let textField = alertController.textFields?.first else { return }
             self.citiesToFetch.append(textField.text!)
-            self.fetchWeather()
+            self.presenter?.startFetchingWeatherForcity(city: textField.text!)
         }
         alertController.addAction(confirmAction)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -78,7 +78,7 @@ extension CitiesViewController : PresenterToViewProtocol{
     }
     
     func showError() {
-        let alert = UIAlertController(title: "Error", message: "Problem Fetching Weather", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Problem Fetching Weather", message: "Try entering a correct city name.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

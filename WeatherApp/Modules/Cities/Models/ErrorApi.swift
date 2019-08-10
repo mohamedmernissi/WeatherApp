@@ -12,29 +12,17 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Data : Codable {
-	let request : [Request]?
-	let current_condition : [Current_condition]?
-	let weather : [Weather]?
-	let climateAverages : [ClimateAverages]?
-    let error : [ErrorApi]?
+struct ErrorApi : Codable {
+	let msg : String?
 
 	enum CodingKeys: String, CodingKey {
 
-		case request = "request"
-		case current_condition = "current_condition"
-		case weather = "weather"
-		case climateAverages = "ClimateAverages"
-        case error = "error"
+		case msg = "msg"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		request = try values.decodeIfPresent([Request].self, forKey: .request)
-		current_condition = try values.decodeIfPresent([Current_condition].self, forKey: .current_condition)
-		weather = try values.decodeIfPresent([Weather].self, forKey: .weather)
-        self.error = try values.decodeIfPresent([ErrorApi].self, forKey: .error)
-		climateAverages = try values.decodeIfPresent([ClimateAverages].self, forKey: .climateAverages)
+		msg = try values.decodeIfPresent(String.self, forKey: .msg)
 	}
 
 }
