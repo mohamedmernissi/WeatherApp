@@ -1,6 +1,6 @@
 # WeatherApp
 
-This is a weather app that allows users to see cities' forcast. The user can add, delete cities in the app. The data is retrieved from www.worldweatheronline.com.
+This is a weather app that allows users to see cities' forcast. The user can add, delete and search cities in the app. The data is retrieved from www.worldweatheronline.com.
 
 For this project i used the VIPER architecture, with 2 modules :
 
