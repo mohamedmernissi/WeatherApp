@@ -77,8 +77,11 @@ extension CitiesViewController : PresenterToViewProtocol{
         self.mTableView.reloadData()
     }
     
-    func showError() {
-        let alert = UIAlertController(title: "Problem Fetching Weather", message: "Try entering a correct city name.", preferredStyle: .alert)
+    func showError(city : String) {
+        if let index = self.citiesToFetch.firstIndex(of: city){
+            self.citiesToFetch.remove(at: index)
+        }
+        let alert = UIAlertController(title: "Problem Fetching Weather for " + city, message: "Try entering a correct city name.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

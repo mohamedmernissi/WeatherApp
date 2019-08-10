@@ -21,7 +21,7 @@ protocol ViewToPresenterProtocol: class{
 
 protocol PresenterToViewProtocol: class{
     func showCitiesWeather(weatherModel: WeatherModel)
-    func showError()
+    func showError(city : String)
 }
 
 protocol PresenterToRouterProtocol: class {
@@ -36,5 +36,5 @@ protocol PresenterToInteractorProtocol: class {
 
 protocol InteractorToPresenterProtocol: class {
     func weatherFetchedSuccess(weatherModel: WeatherModel)
-    func weatherFetchFailed()
+    func weatherFetchFailed(city : String)
 }

@@ -36,7 +36,7 @@ extension CitiesPresenter: InteractorToPresenterProtocol {
         view?.showCitiesWeather(weatherModel: weatherModel)
     }
     
-    func weatherFetchFailed() {
-        view?.showError()
+    func weatherFetchFailed(city : String) {
+        view?.showError(city: city)
     }
 }

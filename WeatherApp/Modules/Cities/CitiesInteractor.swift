@@ -14,23 +14,23 @@ class CitiesInteractor : PresenterToInteractorProtocol{
     
     func fetchWeather(city : String){
         print("City: ",city)
-        let parameters : Parameters = ["q" : city,"key" : API_KEY,"format" : "json","num_of_days" : "1"]
+        let parameters : Parameters = ["q" : city,"key" : API_KEY,"format" : "json","num_of_days" : "5"]
         AF.request(API_WEATHER,method: .get,parameters: parameters,encoding: URLEncoding(destination: .queryString)).responseJSON { response in
             guard let data = response.data else {
-                self.presenter?.weatherFetchFailed()
+                self.presenter?.weatherFetchFailed(city: city)
                 return
             }
             do {
                 let decoder = JSONDecoder()
                 let weatherModel = try decoder.decode(WeatherModel.self, from: data)
                 guard weatherModel.data?.error == nil else{
-                    self.presenter?.weatherFetchFailed()
+                    self.presenter?.weatherFetchFailed(city: city)
                     return
                 }
                 self.presenter?.weatherFetchedSuccess(weatherModel: weatherModel)
             } catch let error {
                 print("Error_fetchWeather: ",error.localizedDescription)
-                self.presenter?.weatherFetchFailed()
+                self.presenter?.weatherFetchFailed(city: city)
             }
         }
     }

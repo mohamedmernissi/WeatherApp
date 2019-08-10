@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2EC1B26822FE4EDF00ACC524 /* ErrorApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1B26622FE4DEE00ACC524 /* ErrorApi.swift */; };
+		2EC1B26B22FEBCF400ACC524 /* WeatherDailyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1B26A22FEBCF400ACC524 /* WeatherDailyCell.swift */; };
+		2EC1B26D22FEC77F00ACC524 /* WeatherDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EC1B26C22FEC77F00ACC524 /* WeatherDetailsCell.swift */; };
 		2EE27C0722FCE36C002B4E00 /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE27C0322FCE36C002B4E00 /* CitiesViewController.swift */; };
 		2EE27C0822FCE36C002B4E00 /* CitiesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE27C0422FCE36C002B4E00 /* CitiesRouter.swift */; };
 		2EE27C0922FCE36C002B4E00 /* CitiesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EE27C0522FCE36C002B4E00 /* CitiesPresenter.swift */; };
@@ -90,6 +92,8 @@
 		0E9ED3C15DAD7CE4D5321AEA /* Pods-WeatherAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.release.xcconfig"; path = "Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		2083C9D7A1741398BDE471F6 /* Pods-WeatherAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2EC1B26622FE4DEE00ACC524 /* ErrorApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorApi.swift; sourceTree = "<group>"; };
+		2EC1B26A22FEBCF400ACC524 /* WeatherDailyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDailyCell.swift; sourceTree = "<group>"; };
+		2EC1B26C22FEC77F00ACC524 /* WeatherDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailsCell.swift; sourceTree = "<group>"; };
 		2EE27C0322FCE36C002B4E00 /* CitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
 		2EE27C0422FCE36C002B4E00 /* CitiesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesRouter.swift; sourceTree = "<group>"; };
 		2EE27C0522FCE36C002B4E00 /* CitiesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesPresenter.swift; sourceTree = "<group>"; };
@@ -161,6 +165,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EC1B26922FEBCB000ACC524 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2EC1B26A22FEBCF400ACC524 /* WeatherDailyCell.swift */,
+				2EC1B26C22FEC77F00ACC524 /* WeatherDetailsCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2EE27BFE22FCE209002B4E00 /* ui */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +225,7 @@
 		2EE27C0B22FCE3D4002B4E00 /* WeatherDetails */ = {
 			isa = PBXGroup;
 			children = (
+				2EC1B26922FEBCB000ACC524 /* View */,
 				2EE27C1C22FE22E5002B4E00 /* Protocols */,
 				2EE27C0D22FCE3D4002B4E00 /* WeatherInteractor.swift */,
 				2EE27C0E22FCE3D4002B4E00 /* WeatherRouter.swift */,
@@ -571,7 +585,9 @@
 			files = (
 				A806333922FC7A49000F962D /* AppDelegate.swift in Sources */,
 				A8AD3C1B22FD6D2200A2187B /* Constants.swift in Sources */,
+				2EC1B26B22FEBCF400ACC524 /* WeatherDailyCell.swift in Sources */,
 				A8AD3C1022FD6B8000A2187B /* Current_condition.swift in Sources */,
+				2EC1B26D22FEC77F00ACC524 /* WeatherDetailsCell.swift in Sources */,
 				2EE27C1E22FE24D6002B4E00 /* WeatherDetailsProtocols.swift in Sources */,
 				A8AD3C0A22FD6B8000A2187B /* Weather.swift in Sources */,
 				2EC1B26822FE4EDF00ACC524 /* ErrorApi.swift in Sources */,
