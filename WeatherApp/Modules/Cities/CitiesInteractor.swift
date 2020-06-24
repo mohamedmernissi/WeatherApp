@@ -23,11 +23,16 @@ class CitiesInteractor : PresenterToInteractorProtocol{
             do {
                 let decoder = JSONDecoder()
                 let weatherModel = try decoder.decode(WeatherModel.self, from: data)
-                guard weatherModel.data?.error == nil else{
+                guard weatherModel.data.error == nil else{
                     self.presenter?.weatherFetchFailed(city: city)
                     return
                 }
-                self.presenter?.weatherFetchedSuccess(weatherModel: weatherModel)
+                if let viewModel = self.presenter?.createViewModelFromModel(weatherModel: weatherModel){
+                    self.presenter?.weatherFetchedSuccess(weatherModel: viewModel)
+                }
+                else{
+                    self.presenter?.weatherFetchFailed(city: city)
+                }
             } catch let error {
                 print("Error_fetchWeather: ",error.localizedDescription)
                 self.presenter?.weatherFetchFailed(city: city)

@@ -19,7 +19,7 @@ class WeatherViewController: UIViewController {
     // MARK: - Properties
     
     let itemsToShow = ["Humidity","WindSpeed","Pressure"]
-    var weatherModel : WeatherModel?
+    var weatherModel : WeatherViewModel?
     
 
     // MARK: - Outlets
@@ -30,7 +30,7 @@ class WeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let cityName = self.weatherModel?.data?.request![0].query{
+        if let cityName = self.weatherModel?.city{
             self.title = cityName
         }
         else{
@@ -51,8 +51,8 @@ extension WeatherViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let detailsCell = tableView.dequeueReusableCell(withIdentifier: WEATHERCELLDETAIL_IDENTIFIER, for: indexPath) as! WeatherDetailsCell
         detailsCell.mLblItemToShow.text = itemsToShow[indexPath.row]
-        if let weatherHumidity = self.weatherModel?.data?.current_condition![0].humidity, let weatherWindSpeed = self.weatherModel?.data?.current_condition![0].windspeedKmph
-            , let weatherPressure = self.weatherModel?.data?.current_condition![0].pressure{
+        if let weatherHumidity = self.weatherModel?.weatherHumidity, let weatherWindSpeed = self.weatherModel?.weatherWindSpeed
+            , let weatherPressure = self.weatherModel?.weatherPressure{
             switch indexPath.row {
             case 0:
                 detailsCell.mLblValue.text = weatherHumidity  + "%"
@@ -74,16 +74,16 @@ extension WeatherViewController : UITableViewDataSource,UITableViewDelegate{
 
 extension WeatherViewController : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.weatherModel?.data?.weather?.count ?? 0
+        return self.weatherModel?.weather?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let weatherDailyCell = collectionView.dequeueReusableCell(withReuseIdentifier: WEATHERDAILYCELL_IDENTIFIER, for: indexPath) as! WeatherDailyCell
         
-        let dateStr = (weatherModel?.data?.weather![indexPath.row].date)!
+        let dateStr = (weatherModel?.weather![indexPath.row].date) ?? ""
         let dayOfTheWeek = getDayOfWeekFromDate(dateStr: dateStr)
-        let maxDegrees = weatherModel?.data?.weather![indexPath.row].maxtempC ?? ""
-        let minDegrees = weatherModel?.data?.weather![indexPath.row].mintempC ?? ""
+        let maxDegrees = weatherModel?.weather![indexPath.row].maxtempC ?? ""
+        let minDegrees = weatherModel?.weather![indexPath.row].mintempC ?? ""
 
         weatherDailyCell.fill(day: dayOfTheWeek, minDegrees: minDegrees, maxDegrees: maxDegrees)
         return weatherDailyCell

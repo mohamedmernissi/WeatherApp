@@ -14,5 +14,5 @@ let API_WEATHER : String = "https://api.worldweatheronline.com/premium/v1/weathe
 
 // API KEY
 
-let API_KEY : String = "46d181cb7817467f813145845190808"
+let API_KEY : String = "61233c6b960f431c9f1121951202306"
 

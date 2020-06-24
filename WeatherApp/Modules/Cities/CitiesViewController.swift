@@ -17,10 +17,10 @@ class CitiesViewController: UIViewController {
     var presenter: ViewToPresenterProtocol?
     
     // Array of objects used to populate the uitableview
-    var weatherModelArray = [WeatherModel]()
+    var weatherModelArray = [WeatherViewModel]()
     
     // Array of filtered objects from search
-    var filteredWeatherModelArray = [WeatherModel]()
+    var filteredWeatherModelArray = [WeatherViewModel]()
     var isFiltered = false
     
     // Array of cities used to make connection with the api
@@ -72,7 +72,7 @@ class CitiesViewController: UIViewController {
 }
 
 extension CitiesViewController : PresenterToViewProtocol{
-    func showCitiesWeather(weatherModel: WeatherModel) {
+    func showCitiesWeather(weatherModel: WeatherViewModel) {
         weatherModelArray.append(weatherModel)
         self.mTableView.reloadData()
     }
@@ -103,14 +103,14 @@ extension CitiesViewController : UITableViewDataSource{
         let cityCell = tableView.dequeueReusableCell(withIdentifier: CITY_CELL_IDENTIFIER, for: indexPath) as! CityCell
         
         if !isFiltered{
-            if let cityName = weatherModelArray[indexPath.row].data?.request?[0].query,let cityState = weatherModelArray[indexPath.row].data?.current_condition?[0].weatherDesc?[0].value,let cityDegrees = weatherModelArray[indexPath.row].data?.current_condition?[0].temp_C {
+            if let cityName = weatherModelArray[indexPath.row].city,let cityState = weatherModelArray[indexPath.row].cityState,let cityDegrees = weatherModelArray[indexPath.row].cityDegrees{
                 cityCell.mLblCityName.text = cityName
                 cityCell.mLblState.text = cityState
                 cityCell.mLblDegrees.text = cityDegrees + "°C"
             }
         }
         else{
-            if let cityName = filteredWeatherModelArray[indexPath.row].data?.request?[0].query,let cityState = filteredWeatherModelArray[indexPath.row].data?.current_condition?[0].weatherDesc?[0].value,let cityDegrees = filteredWeatherModelArray[indexPath.row].data?.current_condition?[0].temp_C {
+            if let cityName = filteredWeatherModelArray[indexPath.row].city,let cityState = filteredWeatherModelArray[indexPath.row].cityState,let cityDegrees = filteredWeatherModelArray[indexPath.row].cityDegrees{
                 cityCell.mLblCityName.text = cityName
                 cityCell.mLblState.text = cityState
                 cityCell.mLblDegrees.text = cityDegrees + "°C"
@@ -136,7 +136,7 @@ extension CitiesViewController : UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        var weatherModel : WeatherModel
+        var weatherModel : WeatherViewModel
         if !isFiltered{
             weatherModel = self.weatherModelArray[indexPath.row]
         }
@@ -157,9 +157,9 @@ extension CitiesViewController : UISearchBarDelegate{
         else {
             self.isFiltered = true
         }
-        for city in self.weatherModelArray {
-            if (city.data?.request?[0].query!.lowercased().contains(searchText.lowercased()))! {
-                self.filteredWeatherModelArray.append(city)
+        for item in self.weatherModelArray{
+            if (item.city?.lowercased().contains(searchText.lowercased()))!{
+                self.filteredWeatherModelArray.append(item)
             }
         }
         self.mTableView.reloadData()

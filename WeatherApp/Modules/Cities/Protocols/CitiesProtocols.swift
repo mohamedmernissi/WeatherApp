@@ -15,18 +15,18 @@ protocol ViewToPresenterProtocol: class{
     var interactor: PresenterToInteractorProtocol? {get set}
     var router: PresenterToRouterProtocol? {get set}
     func startFetchingWeatherForcity(city : String)
-    func showDetailsController(navigationController:UINavigationController,weatherModel: WeatherModel)
+    func showDetailsController(navigationController:UINavigationController,weatherModel: WeatherViewModel)
     
 }
 
 protocol PresenterToViewProtocol: class{
-    func showCitiesWeather(weatherModel: WeatherModel)
+    func showCitiesWeather(weatherModel: WeatherViewModel)
     func showError(city : String)
 }
 
 protocol PresenterToRouterProtocol: class {
 
-    func pushToDetailsScreen(navigationConroller:UINavigationController,weatherModel: WeatherModel)
+    func pushToDetailsScreen(navigationConroller:UINavigationController,weatherModel: WeatherViewModel)
 }
 
 protocol PresenterToInteractorProtocol: class {
@@ -35,6 +35,7 @@ protocol PresenterToInteractorProtocol: class {
 }
 
 protocol InteractorToPresenterProtocol: class {
-    func weatherFetchedSuccess(weatherModel: WeatherModel)
+    func weatherFetchedSuccess(weatherModel: WeatherViewModel)
+    func createViewModelFromModel(weatherModel: WeatherModel) -> WeatherViewModel
     func weatherFetchFailed(city : String)
 }

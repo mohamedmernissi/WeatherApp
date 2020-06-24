@@ -31,7 +31,7 @@ class CitiesRouter: PresenterToRouterProtocol {
         return UIStoryboard(name:"Main",bundle: Bundle.main)
     }
     
-    func pushToDetailsScreen(navigationConroller navigationController:UINavigationController,weatherModel : WeatherModel) {
+    func pushToDetailsScreen(navigationConroller navigationController:UINavigationController,weatherModel : WeatherViewModel) {
         
         let weatherModule = WeatherRouter.setupModule()
         weatherModule.weatherModel = weatherModel
