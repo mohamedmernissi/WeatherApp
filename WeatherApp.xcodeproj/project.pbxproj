@@ -100,6 +100,7 @@
 		A8AD3C2022FD833B00A2187B /* CitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */; };
 		A8AD3C2122FD833B00A2187B /* CitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */; };
 		A8AD3C2222FD833B00A2187B /* CitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */; };
+		A8F70DB824A6060C00AE87A3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F70DB724A6060C00AE87A3 /* Alamofire.framework */; };
 		B2C461E74CBB75AB8AF113E6 /* Pods_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DDD60B5373338BC3579A26 /* Pods_WeatherAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -164,6 +165,10 @@
 		A8AD3BF722FD6B8000A2187B /* WeatherDesc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDesc.swift; sourceTree = "<group>"; };
 		A8AD3C1A22FD6D2200A2187B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesProtocols.swift; sourceTree = "<group>"; };
+		A8F70DB524A605D800AE87A3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8F70DB724A6060C00AE87A3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8F70DB924A6061400AE87A3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8F70DBB24A6062600AE87A3 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1B3761E29AA66F3F7032C82 /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		C7D1DE4DB28CEA7FD28B3CB7 /* Pods_WeatherAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAB5B309FE763C5C187D2711 /* Pods-WeatherAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherAppTests.release.xcconfig"; path = "Target Support Files/Pods-WeatherAppTests/Pods-WeatherAppTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -176,6 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8F70DB824A6060C00AE87A3 /* Alamofire.framework in Frameworks */,
 				A81C545FAC781A66839878F3 /* Pods_WeatherApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +314,10 @@
 		7E64187667F2F6BA7E1B38B8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A8F70DBB24A6062600AE87A3 /* Alamofire.framework */,
+				A8F70DB924A6061400AE87A3 /* Alamofire.framework */,
+				A8F70DB724A6060C00AE87A3 /* Alamofire.framework */,
+				A8F70DB524A605D800AE87A3 /* Alamofire.framework */,
 				5F75DD1977E5294077F44C2D /* Pods_WeatherApp.framework */,
 				C7D1DE4DB28CEA7FD28B3CB7 /* Pods_WeatherAppTests.framework */,
 				22DDD60B5373338BC3579A26 /* Pods_WeatherAppUITests.framework */,
