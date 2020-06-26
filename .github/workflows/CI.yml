@@ -12,6 +12,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+    
+    - name : update cocapods
+    - run : sudo gem update cocoapods --pre
+    
+    - name : update pods file
+    - run : pod update
 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app
