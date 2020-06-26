@@ -26,9 +26,13 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app
 
     - name: Build and test
-      run: xcodebuild clean build test -workspace WeatherApp.xcworkspace -scheme "WeatherApp" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"
+      run: xcodebuild clean test -workspace WeatherApp.xcworkspace -scheme "WeatherApp" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"
 
     - name: The job has failed
       if: ${{ failure() }}
       run: echo "Failed test"
+
+    - name: The job has succeeded
+      if: ${{ success() }}
+      run: echo "Success"
     
