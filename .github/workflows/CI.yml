@@ -9,15 +9,16 @@ on:
 jobs:
   build-and-test:
     runs-on: macos-latest
-
-    steps:
-    - uses: actions/checkout@master
-    
-    - name : update cocapods
+  
+    - name : update cocoapods
     - run : sudo gem update cocoapods --pre
     
     - name : update pods file
     - run : pod update
+      
+    steps:
+      - 
+    - uses: actions/checkout@master
 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app
