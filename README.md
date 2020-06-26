@@ -1,4 +1,6 @@
-# WeatherApp
+# WeatherApp 
+
+![WeatherAppCI](https://github.com/mohamedmernissi/WeatherApp/workflows/WeatherAppCI/badge.svg)
 
 This is a weather app that allows users to see cities' forcast. The user can add, delete and search cities in the app. The data is retrieved from www.worldweatheronline.com.
 
