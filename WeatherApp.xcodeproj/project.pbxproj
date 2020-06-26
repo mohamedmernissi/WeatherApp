@@ -100,7 +100,6 @@
 		A8AD3C2022FD833B00A2187B /* CitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */; };
 		A8AD3C2122FD833B00A2187B /* CitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */; };
 		A8AD3C2222FD833B00A2187B /* CitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8AD3C1F22FD833B00A2187B /* CitiesProtocols.swift */; };
-		A8F70DB824A6060C00AE87A3 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8F70DB724A6060C00AE87A3 /* Alamofire.framework */; };
 		B2C461E74CBB75AB8AF113E6 /* Pods_WeatherAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22DDD60B5373338BC3579A26 /* Pods_WeatherAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -181,7 +180,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8F70DB824A6060C00AE87A3 /* Alamofire.framework in Frameworks */,
 				A81C545FAC781A66839878F3 /* Pods_WeatherApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
