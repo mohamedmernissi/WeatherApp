@@ -11,10 +11,10 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
 
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app
 
     - name: Build and test
-      run: xcodebuild clean build test -workspace WeatherApp/WeatherApp.xcworkspace -scheme "WeatherApp" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"
+      run: xcodebuild clean test -workspace WeatherApp/WeatherApp.xcworkspace -scheme "WeatherApp" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"

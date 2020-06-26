@@ -34,7 +34,7 @@ class WeatherAppTests: XCTestCase {
 
                 if let viewModel = self.presenter?.createViewModelFromModel(weatherModel: weatherModel){
                     //XCTAssertEqual(viewModel.city, "casablanca")
-                    XCTAssertEqual(viewModel.weather?.count, 8)
+                    XCTAssertEqual(viewModel.weather?.count, 5)
                     expectation.fulfill()
                 }
                 else{
