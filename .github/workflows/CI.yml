@@ -36,6 +36,10 @@ jobs:
       if: ${{ success() }}
 
 
+  merge-branch: 
+    runs-on: ubuntu-latest
+    steps:
+      
     - uses: actions/checkout@master
     - name: Merge
       uses: devmasx/merge-branch@v1.1.0
@@ -46,4 +50,3 @@ jobs:
         GITHUB_TOKEN: ${{secrets.ACTIONS_TOKEN}}
 
 
-    
