@@ -2,9 +2,9 @@ name: WeatherAppCI
 #too
 on:
   push:
-    branches: [ master ]
+    branches: [ develop ]
   pull_request:
-    branches: [ master ]
+    branches: [ develop ]
 
 jobs:
   build-and-test:
@@ -35,4 +35,6 @@ jobs:
     - name: The job has succeeded
       if: ${{ success() }}
       run: echo "Success"
+      run: git merge master
+
     
