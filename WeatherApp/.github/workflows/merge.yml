@@ -2,7 +2,7 @@
     runs-on: ubuntu-latest
     steps:
       
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - name: Merge
       uses: devmasx/merge-branch@v1.1.0
       with:
