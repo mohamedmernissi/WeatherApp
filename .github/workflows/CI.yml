@@ -30,7 +30,7 @@ jobs:
 
     - name: The job has failed
       if: ${{ failure() }}
-      run: echo "Failed test"
+      run: exit 1
 
     - name: The job has succeeded
       if: ${{ success() }}
