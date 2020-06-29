@@ -34,7 +34,6 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      run: echo "Success"
       run: git merge master
 
     
