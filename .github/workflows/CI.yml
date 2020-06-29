@@ -32,8 +32,6 @@ jobs:
       if: ${{ failure() }}
       run: exit 1
 
-    - name: The job has succeeded
-    - uses: actions/checkout@v2
     - name: Merge
       uses: devmasx/merge-branch@v1.1.0
       with:
