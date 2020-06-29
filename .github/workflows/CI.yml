@@ -34,7 +34,9 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      run: git branch
+      run: git branch 
+           git checkout master
+           git merge develop
 
 
 
