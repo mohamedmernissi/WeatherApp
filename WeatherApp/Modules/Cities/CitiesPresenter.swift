@@ -47,7 +47,7 @@ extension CitiesPresenter: InteractorToPresenterProtocol {
             }
         }
         
-        return WeatherViewModel(city: weatherModel.data.request?[0].query, cityState: weatherModel.data.current_condition?[0].weatherDesc?[0].value, cityDegrees: weatherModel.data.current_condition?[0].temp_C, weatherHumidity: weatherModel.data.current_condition![0].humidity, weatherWindSpeed: weatherModel.data.current_condition![0].windspeedKmph, weatherPressure: weatherModel.data.current_condition![0].pressure, weather: weatherPrevisions)
+        return WeatherViewModel(city: weatherModel.data.request?[0].query, cityState: weatherModel.data.current_condition?[0].weatherDesc?[0].value, cityDegrees: weatherModel.data.current_condition?[0].temp_C, weatherHumidity: weatherModel.data.current_condition?[0].humidity, weatherWindSpeed: weatherModel.data.current_condition?[0].windspeedKmph, weatherPressure: weatherModel.data.current_condition?[0].pressure, weather: weatherPrevisions)
     }
     
     func weatherFetchFailed(city : String) {
