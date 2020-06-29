@@ -32,7 +32,8 @@ jobs:
       if: ${{ failure() }}
       run: exit 1
 
-    - name: Merge
+    - name: The job has succeeded
+      if: ${{ success() }}
       uses: devmasx/merge-branch@v1.1.0
       with:
         label_name: 'merged in master'
