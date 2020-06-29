@@ -34,7 +34,7 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      uses : ./.github/actions/merge-branch
+      uses : ./.github/actions/merge
 
 
 
