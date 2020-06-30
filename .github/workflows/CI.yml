@@ -32,7 +32,11 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      run: echo "success"
+    - run: |
+          git remote update
+          git branch
+          git checkout master
+
 
 
 
