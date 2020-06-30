@@ -4,7 +4,7 @@ on:
   push:
     branches: [ develop ]
   pull_request:
-    branches: [ develop ]
+    branches: [ master ]
 
 jobs:
   build-and-test:
@@ -34,13 +34,10 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      run: |
-           git remote add gh-token "https://${{secrets.ACTIONS_TOKEN}}@github.com/:mohamedmernissi/:WeatherApp.git"
-           git config --global user.name "mohamedmernissi"
-           git config --global user.email "mohamedmernissi@live.com"
-           git branch 
-           git checkout master
-           git merge develop
+      uses: vsoch/pull-request-action@1.0.6
+      env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
+          PULL_REQUEST_BRANCH: "master
 
 
 
