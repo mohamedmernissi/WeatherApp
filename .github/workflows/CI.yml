@@ -37,7 +37,7 @@ jobs:
           git branch
           git checkout master
           git merge develop --allow-unrelated-histories
-
+          
 
 
 
