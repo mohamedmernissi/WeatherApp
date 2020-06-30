@@ -38,7 +38,7 @@ jobs:
           git checkout -b new_branch
           git merge develop
           git checkout master
-          git merge new_branch
+          git merge new_branch --allow-unrelated-histories
           git branch -d new_branch
           #git merge develop --allow-unrelated-histories -s recursive
           
