@@ -36,7 +36,7 @@ jobs:
           git remote update
           git branch
           git checkout master
-          git merge develop --allow-unrelated-histories
+          git merge develop
           
 
 
