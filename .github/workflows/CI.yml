@@ -35,10 +35,9 @@ jobs:
     - name: The job has succeeded
       if: ${{ success() }}
       run: |
+           git remote add gh-token "https://${{secrets.ACTIONS_TOKEN}}@github.com/:mohamedmernissi/:WeatherApp.git"
            git config --global user.name "mohamedmernissi"
            git config --global user.email "mohamedmernissi@live.com"
-           git remote add gh-token "https://${{secrets.ACTIONS_TOKEN}}@github.com/:mohamedmernissi/:WeatherApp.git"
-           git fetch gh-token && git fetch gh-token gh-pages:gh-pages
            git branch 
            git checkout master
            git merge develop
