@@ -3,7 +3,7 @@
 set -eo pipefail
 
 xcodebuild -workspace WeatherApp.xcworkspace \
-            -scheme WeatherApp\ iOS \
+            -scheme WeatherApp \
             -sdk iphoneos \
             -configuration AppStoreDistribution \
             -archivePath $PWD/build/WeatherApp.xcarchive \
