@@ -34,7 +34,7 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-    - run: |
+      run: |
           git remote update
           git branch
           git checkout master
