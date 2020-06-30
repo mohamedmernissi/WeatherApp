@@ -35,8 +35,12 @@ jobs:
       run: |
           git remote update
           git branch
+          git branch -b new_branch
+          git merge develop
           git checkout master
-          git merge develop --allow-unrelated-histories -s recursive
+          git merge new_branch
+          git branch -d new_branch
+          #git merge develop --allow-unrelated-histories -s recursive
           
 
 
