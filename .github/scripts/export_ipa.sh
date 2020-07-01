@@ -10,4 +10,4 @@ set -eo pipefail
 xcodebuild  -exportArchive \
             -archivePath $PWD/build/WeatherApp.xcarchive \
             -exportOptionsPlist WeatherApp/exportOptions.plist \
-            -exportPath DerivedData/ipa \
+            -exportPath $PWD/build \
