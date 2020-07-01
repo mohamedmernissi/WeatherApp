@@ -3,6 +3,8 @@ name: WeatherAppCI
 on:
   push:
     branches: [ develop ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build-and-test:
@@ -24,7 +26,7 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app
 
     - name: Build and test
-      run: xcodebuild test -workspace WeatherApp.xcworkspace -scheme "WeatherApp" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"
+      run: xcodebuild clean test -workspace WeatherApp.xcworkspace -scheme "WeatherApp" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11"
 
     - name: The job has failed
       if: ${{ failure() }}
@@ -32,15 +34,16 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      run: |
-          git remote update
-          git branch
-          git checkout -b new_branch
-          git merge develop
-          git checkout master
-          git merge new_branch --allow-unrelated-histories
-          git branch -d new_branch
-          #git merge develop --allow-unrelated-histories -s recursive
+      run: echo "success"
+#      run: |
+#          git remote update
+#          git branch
+#          git checkout -b new_branch
+#          git merge develop
+#          git checkout master
+#          git merge new_branch --allow-unrelated-histories
+#          git branch -d new_branch
+#          git merge develop --allow-unrelated-histories -s recursive
           
 
 
