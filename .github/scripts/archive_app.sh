@@ -6,7 +6,6 @@ xcodebuild  -workspace WeatherApp.xcworkspace \
             -scheme "WeatherApp" \
             -sdk iphonesimulator \
             -destination "platform=iOS Simulator,name=iPhone 11"
-            -allowProvisioningUpdates
             -configuration AppStoreDistribution \
             -archivePath $PWD/build/WeatherApp.xcarchive \
             clean archive | xcpretty
