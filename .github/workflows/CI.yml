@@ -1,8 +1,8 @@
 name: WeatherAppCI
 #too
 on:
-  push:
-    branches: [ develop ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build-and-test:
@@ -32,12 +32,17 @@ jobs:
 
     - name: The job has succeeded
       if: ${{ success() }}
-      run: |
-          git remote update
-          git branch
-          git checkout master
-          git merge develop --allow-unrelated-histories
-
+      run: echo "success"
+#      run: |
+#          git remote update
+#          git branch
+#          git checkout -b new_branch
+#          git merge develop
+#          git checkout master
+#          git merge new_branch --allow-unrelated-histories
+#          git branch -d new_branch
+#          git merge develop --allow-unrelated-histories -s recursive
+          
 
 
 
