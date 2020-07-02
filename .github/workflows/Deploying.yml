@@ -24,6 +24,10 @@ jobs:
 #      - name: Exporting .ipa
 ##        run: ./.github/scripts/export_ipa.sh
 #        run : xcodebuild -exportArchive -archivePath $PWD/build/WeatherApp.xcarchive -exportOptionsPlist WeatherApp/exportOptions.plist -exportPath $PWD/build
+      - name: Select Xcode
+        run: sudo xcode-select -switch /Applications/Xcode_11.5.app
+      - name: Xcode version
+        run: /usr/bin/xcodebuild -version
       - name: Build archive
         run: |
          xcodebuild -sdk iphoneos -projec tWeatherApp/WeatherApp.xcworkspace \
