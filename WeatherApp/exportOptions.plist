@@ -4,7 +4,7 @@
 <dict>
 	<key>compileBitcode</key>
 	<true/>
-	<key>method</key>
+	<key>export_method</key>
 	<string>app-store</string>
 	<key>provisioningProfiles</key>
 	<dict>
