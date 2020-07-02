@@ -29,13 +29,13 @@ jobs:
          xcodebuild -sdk iphoneos -projec tWeatherApp/WeatherApp.xcworkspace \
           -configuration Release -scheme "WeatherApp" \
           -derivedDataPath DerivedData \
-          -archivePath DerivedData/Archive/WeatherApp archive
+          -archivePath DerivedData/Archive/WeatherApp.xcarchive
       - name: Export Archive
         run: |
          xcodebuild -exportArchive \
           -archivePath DerivedData/Archive/WeatherApp.xcarchive \
           -exportOptionsPlist WeatherApp/exportOptions.plist \
-          -exportPath DerivedData/ipa
+          -exportPath DerivedData/WeatherApp.ipa
 #      - name: Publishing app
 #        if: success()
 #        env:
