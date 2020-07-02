@@ -10,5 +10,4 @@ set -eo pipefail
 xcodebuild  -exportArchive \
             -archivePath $PWD/build/WeatherApp.xcarchive \
             -exportOptionsPlist WeatherApp/exportOptions.plist \
-            -exportPath $PWD/build \
-            -allowProvisioningUpdates 
+            -exportPath $PWD/build 
