@@ -22,7 +22,8 @@ jobs:
           PR_NUMBER: $(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
         run: ./.github/scripts/archive_app.sh
       - name: Exporting .ipa
-        run: ./.github/scripts/export_ipa.sh
+#        run: ./.github/scripts/export_ipa.sh
+        run : xcodebuild -exportArchive -archivePath $PWD/build/WeatherApp.xcarchive -exportOptionsPlist exportOptions.plist -exportPath $PWD/build
       - name: Publishing app
         if: success()
         env:
