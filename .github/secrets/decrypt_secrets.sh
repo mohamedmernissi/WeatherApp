@@ -1,8 +1,8 @@
 #!/bin/sh
 set -eo pipefail
 
-gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/WeatherApp_Distribution.mobileprovision.mobileprovision ./.github/secrets/WeatherApp_Distribution.mobileprovision.gpg
-gpg --quiet --batch --yes --decrypt --passphrase="$IOS_KEYS" --output ./.github/secrets/Certificats.p12 ./.github/secrets/Certificats.p12.gpg
+gpg --quiet --batch --yes --decrypt --passphrase="$PROVISIONING_PASSWORD" --output ./.github/secrets/WeatherApp_Distribution.mobileprovision.mobileprovision ./.github/secrets/WeatherApp_Distribution.mobileprovision.gpg
+gpg --quiet --batch --yes --decrypt --passphrase="$PROVISIONING_PASSWORD" --output ./.github/secrets/Certificats.p12 ./.github/secrets/Certificats.p12.gpg
 
 mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
 
