@@ -22,7 +22,7 @@ jobs:
       env:
         PROVISIONING_PASSWORD: ${{ secrets.IOS_KEYS }}
     - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_11.4.app && /usr/bin/xcodebuild -version
+      run: sudo xcode-select -switch /Applications/Xcode_11.5.app && /usr/bin/xcodebuild -version
     - name: Build archive
       run: xcodebuild -sdk iphoneos -workspace WeatherApp.xcworkspace -configuration Release -scheme "WeatherApp" -derivedDataPath DerivedData -archivePath DerivedData/Archive/WeatherApp archive
     - name: Export Archive
