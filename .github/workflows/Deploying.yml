@@ -26,7 +26,7 @@ jobs:
     - name: Build archive
       run: xcodebuild -sdk iphonesimulator -workspace WeatherApp.xcworkspace -configuration Release -scheme "WeatherApp" -derivedDataPath DerivedData -archivePath DerivedData/Archive/WeatherApp archive
     - name: Export Archive
-      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/WeatherApp.xcarchive -exportOptionsPlist provisioning/App-Store.plist -exportPath DerivedData/ipa
+      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/WeatherApp.xcarchive -exportOptionsPlist exportOptionsPlist.plist -exportPath DerivedData/ipa
     - name: Dump file hierarchy
       run: ls -R
     - name: Deploy App to Apple
