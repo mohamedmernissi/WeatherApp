@@ -25,7 +25,7 @@ class WeatherAppTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Download weathere")
         let parameters : Parameters = ["q" : "casablanca","key" : API_KEY,"format" : "json","num_of_days" : "5"]
         AF.request(API_WEATHER,method: .get,parameters: parameters,encoding: URLEncoding(destination: .queryString)).responseJSON { response in
-            XCTAssertNotNil(response.data, "Data nill")
+            XCTAssertNotNil(response.data, "Data nil")
             //debugPrint("response: ",response.result)
             do {
                 let decoder = JSONDecoder()
