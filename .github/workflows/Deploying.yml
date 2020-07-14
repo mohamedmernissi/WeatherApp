@@ -1,33 +1,69 @@
-name: Deploy
+#name: Deploy
+#
+#on:
+#  # Trigger the workflow on push or pull request,
+#  # but only for the master branch
+#  push:
+#    branches:
+#      - master
+#jobs:
+#  Build:
+#    runs-on: macOS-latest
+#    steps:
+#    - uses: actions/checkout@v1
+#    - name: Install GPG
+#      run: brew install gnupg
+#    - name: Update cocoapods
+#      run: sudo gem install cocoapods
+#    - name: List available Xcode versions
+#      run: ls /Applications | grep Xcode
+#    - name: Decrypt large secret
+#      run: ./.github/scripts/import_provisioning.sh
+#      env:
+#        PROVISIONING_PASSWORD: ${{ secrets.IOS_KEYS }}
+#    - name: Select Xcode
+#      run: sudo xcode-select -switch /Applications/Xcode_11.5.app && /usr/bin/xcodebuild -version
+#    - name: Build archive
+#      run: xcodebuild -sdk iphoneos -allowProvisioningUpdates -workspace WeatherApp.xcworkspace -configuration Release -scheme WeatherApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/WeatherApp archive
+#    - name: Export Archive
+#      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/WeatherApp.xcarchive -exportOptionsPlist WeatherApp/exportOptions.plist -exportPath DerivedData/ipa
+#    - name: Dump file hierarchy
+#      run: ls -R
+#    - name: Deploy App to Apple
+#      run: xcrun altool --upload-app --type ios --file DerivedData/ipa/WeatherApp.ipa --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose
 
-on:
-  # Trigger the workflow on push or pull request,
-  # but only for the master branch
+name: "build-test"
+on: # rebuild any PRs and main branch changes
+  pull_request:
   push:
     branches:
       - master
+
 jobs:
-  Build:
+  build: # make sure build/ci work properly
     runs-on: macOS-latest
+    timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v1
-    - name: Install GPG
-      run: brew install gnupg
-    - name: Update cocoapods
-      run: sudo gem install cocoapods
-    - name: List available Xcode versions
-      run: ls /Applications | grep Xcode
-    - name: Decrypt large secret
-      run: ./.github/scripts/import_provisioning.sh
-      env:
-        PROVISIONING_PASSWORD: ${{ secrets.IOS_KEYS }}
-    - name: Select Xcode
-      run: sudo xcode-select -switch /Applications/Xcode_11.5.app && /usr/bin/xcodebuild -version
-    - name: Build archive
-      run: xcodebuild -sdk iphoneos -allowProvisioningUpdates -workspace WeatherApp.xcworkspace -configuration Release -scheme WeatherApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/WeatherApp archive
-    - name: Export Archive
-      run: xcodebuild -exportArchive -archivePath DerivedData/Archive/WeatherApp.xcarchive -exportOptionsPlist WeatherApp/exportOptions.plist -exportPath DerivedData/ipa
-    - name: Dump file hierarchy
-      run: ls -R
-    - name: Deploy App to Apple
-      run: xcrun altool --upload-app --type ios --file DerivedData/ipa/WeatherApp.ipa --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose
+    - uses: actions/checkout@v2
+    - uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.CERTIFICATESBASE64 }}
+        p12-password: ""
+    - uses: Apple-Actions/download-provisioning-profiles@v1
+      with:
+        bundle-id: codes.orj.Example-iOS
+        issuer-id: ${{ secrets.APPLEID_USERNAME }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
+    - name: "#️⃣ Generate Build Number"
+      id: buildnumber
+      uses: einaregilsson/build-number@v2
+      with:
+        token: ${{ secrets.ACTIONS_TOKEN }}
+    - run: ./Build
+    - uses: Apple-Actions/upload-testflight-build@master
+      with:
+        app-path: .build/Artifacts/WeatherApp.ipa/WeatherApp.ipa
+        issuer-id: ${{ secrets.APPLEID_USERNAME }}
+        api-key-id: ${{ secrets.APPSTORE_KEY_ID }}
+        api-private-key: ${{ secrets.APPSTORE_PRIVATE_KEY }}
