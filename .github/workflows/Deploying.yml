@@ -24,7 +24,7 @@ jobs:
     - name: Select Xcode
       run: sudo xcode-select -switch /Applications/Xcode_11.5.app && /usr/bin/xcodebuild -version
     - name: Build archive
-      run: xcodebuild -sdk iphoneos -allowProvisioningUpdates -workspace WeatherApp.xcworkspace -configuration Release -scheme WeatherApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/WeatherApp archive
+      run: xcodebuild -sdk iphoneos -allowProvisioningUpdates -workspace WeatherApp.xcodeproj -configuration Release -scheme WeatherApp -derivedDataPath DerivedData -archivePath DerivedData/Archive/WeatherApp archive
     - name: Export Archive
       run: xcodebuild -exportArchive -archivePath DerivedData/Archive/WeatherApp.xcarchive -exportOptionsPlist WeatherApp/exportOptions.plist -exportPath DerivedData/ipa
     - name: Dump file hierarchy
