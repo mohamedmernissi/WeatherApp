@@ -34,6 +34,7 @@ xcrun xcodebuild \
     -showBuildTimingSummary \
     -disableAutomaticPackageResolution \
     -derivedDataPath "${DERIVED_DATA_PATH}" \
+    -allowProvisioningUpdates \
     -archivePath "${ARCHIVE_PATH}" \
     -resultBundlePath "${RESULT_BUNDLE_PATH}" \
     CURRENT_PROJECT_VERSION="${CURRENT_PROJECT_VERSION}" \
