@@ -10,7 +10,7 @@ function finish() {
 
 trap finish EXIT
 
-SDK="${SDK:-iphoneos}"
+SDK="${SDK:-iphonesimulator}"
 WORKSPACE="${WORKSPACE:-WeatherApp.xcworkspace}"
 SCHEME="${SCHEME:-WeatherApp}"
 CONFIGURATION=${CONFIGURATION:-Release}
