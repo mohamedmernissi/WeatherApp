@@ -2,24 +2,21 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>compileBitcode</key>
-	<true/>
-	<key>export_method</key>
+	<key>destination</key>
+	<string>export</string>
+	<key>method</key>
 	<string>app-store</string>
-	<key>provisioningProfiles</key>
-	<dict>
-		<key>Bundle-Id</key>
-		<string>com.mernissi.WeatherApp</string>
-	</dict>
-	<key>signingCertificate</key>
-	<string>Certificates.p12</string>
 	<key>signingStyle</key>
-	<string>manual</string>
+	<string>automatic</string>
+	<key>generateAppStoreInformation</key>
+	<true/>
 	<key>stripSwiftSymbols</key>
 	<true/>
 	<key>teamID</key>
 	<string>28557U83BM</string>
-	<key>thinning</key>
-	<string>&lt;none&gt;</string>
+	<key>uploadBitcode</key>
+	<true/>
+	<key>uploadSymbols</key>
+	<true/>
 </dict>
 </plist>
