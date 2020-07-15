@@ -32,7 +32,7 @@
 #    - name: Deploy App to Apple
 #      run: xcrun altool --upload-app --type ios --file DerivedData/ipa/WeatherApp.ipa --username "${{ secrets.APPLEID_USERNAME }}" --password "${{ secrets.APPLEID_PASSWORD }}" --verbose
 
-name: "build-tests"
+name: "build-test"
 on: # rebuild any PRs and main branch changes
   pull_request:
   push:
