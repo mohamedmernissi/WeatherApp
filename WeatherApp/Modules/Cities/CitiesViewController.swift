@@ -36,10 +36,22 @@ class CitiesViewController: UIViewController {
         
         self.title = "Cities"
         
-        self.fetchWeather()
+        //self.fetchWeather()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(refresh))
+        
+        let model1 = WeatherViewModel(city: "Casablanca", cityState: "Casablanca", cityDegrees: "20", weatherHumidity: "60", weatherWindSpeed: "80", weatherPressure: "30", weather: nil)
+        let model2 = WeatherViewModel(city: "Rabat", cityState: "Rabat", cityDegrees: "23", weatherHumidity: "60", weatherWindSpeed: "80", weatherPressure: "30", weather: nil)
+        let model3 = WeatherViewModel(city: "Fez", cityState: "Fez", cityDegrees: "30", weatherHumidity: "60", weatherWindSpeed: "80", weatherPressure: "30", weather: nil)
+        let model4 = WeatherViewModel(city: "Marrakech", cityState: "Marrakech", cityDegrees: "40", weatherHumidity: "60", weatherWindSpeed: "80", weatherPressure: "30", weather: nil)
+        let model5 = WeatherViewModel(city: "Tangier", cityState: "Tangier", cityDegrees: "24", weatherHumidity: "60", weatherWindSpeed: "80", weatherPressure: "30", weather: nil)
+        weatherModelArray.append(model1)
+        weatherModelArray.append(model2)
+        weatherModelArray.append(model3)
+        weatherModelArray.append(model4)
+        weatherModelArray.append(model5)
+        self.mTableView.reloadData()
     }
     
     @objc func addTapped(){
